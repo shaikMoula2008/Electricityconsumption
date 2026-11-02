@@ -1,6 +1,6 @@
 # Electricity Consumption Analysis System
 
-A Flask + MySQL REST API that stores meter readings, calculates consumption with Pandas and NumPy, summarizes usage by month and year, flags unusually high usage, validates readings, and draws usage charts with Matplotlib.
+A Flask + MySQL REST API that stores meter readings, calculates consumption with Pandas and NumPy, summarizes usage by month and year, flags unusually high usage, validates readings, and draws usage charts and graphs with Matplotlib.
 
 ## Setup
 
@@ -69,8 +69,11 @@ The database starts empty. To try the project with example data, run `sql/sample
 | GET | `/analysis/change/<meter_id>` | Change vs previous period (kWh and %) |
 | GET | `/validation` | Reading-validation report for all meters |
 | GET | `/validation/<meter_id>` | Reading-validation report for one meter (`?max_gap_days=`) |
-| GET | `/charts/trend/<meter_id>.png` | Monthly usage chart with high-usage marks |
-| GET | `/charts/compare.png` | Consumption comparison across consumers |
+| GET | `/charts/trend/<meter_id>.png` | Bar chart of monthly usage with high-usage marks |
+| GET | `/charts/compare.png` | Bar chart comparing total consumption across consumers |
+| GET | `/charts/readings/<meter_id>.png` | Line graph of cumulative readings, with resets marked |
+| GET | `/charts/line/<meter_id>.png` | Line graph of monthly consumption with the high-usage limit |
+| GET | `/charts/compare-lines.png` | Line graph comparing monthly consumption across meters |
 
 ## Expected outputs
 
@@ -78,7 +81,7 @@ The database starts empty. To try the project with example data, run `sql/sample
 |---|---|
 | Monthly consumption report | `/analysis/summary/<meter_id>` |
 | High-usage list | `/analysis/high-usage/<meter_id>` |
-| Usage chart | `/charts/trend/<meter_id>.png`, `/charts/compare.png` |
+| Usage charts and graphs | `/charts/trend/<meter_id>.png`, `/charts/compare.png`, `/charts/readings/<meter_id>.png`, `/charts/line/<meter_id>.png`, `/charts/compare-lines.png` |
 | Reading-validation report | `/validation/<meter_id>` |
 
 ## Example
